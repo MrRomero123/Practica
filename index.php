@@ -30,7 +30,7 @@
 
         $conexion = mysqli_connect(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "UNS");
 
-        $cadenaSQL = "select * from cliente";
+        $cadenaSQL = "SELECT * FROM cliente WHERE pais = 'US'";
         $resultado = mysqli_query($conexion, $cadenaSQL);
 
         while ($fila = mysqli_fetch_object($resultado)) {
