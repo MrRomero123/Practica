@@ -30,7 +30,10 @@
 
         $conexion = mysqli_connect(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "UNS");
 
-        $cadenaSQL = "SELECT * FROM cliente WHERE pais = 'US'";
+        $cadenaSQL = "SELECT * FROM cliente
+WHERE LEFT(nombre, 1) NOT IN ('A', 'E', 'I', 'O', 'U')
+   OR provincia IS NOT NULL
+";
         $resultado = mysqli_query($conexion, $cadenaSQL);
 
         while ($fila = mysqli_fetch_object($resultado)) {
