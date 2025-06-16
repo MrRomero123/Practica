@@ -32,7 +32,7 @@
 
         $cadenaSQL = "SELECT * FROM cliente
 WHERE LEFT(nombre, 1) NOT IN ('A', 'E', 'I', 'O', 'U')
-   OR provincia IS NOT NULL
+   AND provincia IS NOT NULL
 ";
         $resultado = mysqli_query($conexion, $cadenaSQL);
 
