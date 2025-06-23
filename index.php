@@ -32,9 +32,6 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-putenv('MYSQL_HOST=34.60.49.101');
-putenv('MYSQL_USER=root');
-putenv('MYSQL_PASSWORD=123456');
     $conexion = mysqli_connect(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "UNS");
 
 
