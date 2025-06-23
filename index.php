@@ -28,6 +28,12 @@
       <tbody>
         <?php
 
+putenv('MYSQL_HOST=34.60.49.101');
+putenv('MYSQL_USER=root');
+putenv('MYSQL_PASSWORD=123456');
+    $conexion = mysqli_connect(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "UNS");
+
+
         $conexion = mysqli_connect(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "UNS");
 
         $cadenaSQL = "SELECT * FROM cliente
