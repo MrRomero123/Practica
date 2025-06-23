@@ -1,3 +1,5 @@
+
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -27,6 +29,8 @@
       </thead>
       <tbody>
         <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 putenv('MYSQL_HOST=34.60.49.101');
 putenv('MYSQL_USER=root');
