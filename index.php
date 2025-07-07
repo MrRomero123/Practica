@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// CONEXIÓN A BASE DE DATOS
+
 $host = "34.71.26.50"; 
 $user = "root"; 
 $password = "123456"; 
@@ -14,10 +14,10 @@ if (!$conexion) {
   die("Error de conexión: " . mysqli_connect_error());
 }
 
-// ID de la persona que deseas mostrar
+
 $id_persona = 6;
 
-// CONSULTA SQL CON FILTRO POR ID
+
 $consulta = "SELECT 
     p.nombre,
     p.edad,
