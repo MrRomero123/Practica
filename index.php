@@ -18,7 +18,6 @@ $consulta = "SELECT
     p.edad,
     p.correo,
     p.fecha_nacimiento,
-    p.anio_nacimiento,
     o.descripcion AS origen,
     p.telefonos
   FROM Persona p
