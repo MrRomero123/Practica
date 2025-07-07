@@ -43,7 +43,7 @@ $resultado = mysqli_query($conexion, $consulta);
   <div class="container mt-5">
     <div class="jumbotron">
       <h1 class="display-4">Catálogo de Personas</h1>
-      <p class="lead">Aplicación simple PHP + MySQL para mostrar personas con Bootstrap</p>
+      <p class="lead">by romero</p>
       <hr class="my-4">
     </div>
 
