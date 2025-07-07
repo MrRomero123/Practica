@@ -15,8 +15,6 @@ if (!$conexion) {
 
 $consulta = "SELECT 
     p.nombre,
-    TIMESTAMPDIFF(YEAR, p.fecha_nacimiento, CURDATE()) AS edad,
-    YEAR(p.fecha_nacimiento) AS anio_nacimiento,
     p.hijos,
     p.correo,
     p.fecha_nacimiento,
@@ -49,8 +47,6 @@ $resultado = mysqli_query($conexion, $consulta);
         <thead class='thead-dark'>
           <tr>
             <th>Nombre</th>
-            <th>Edad</th>
-            <th>Año de Nacimiento</th>
             <th>Hijos</th>
             <th>Correo</th>
             <th>Fecha de Nacimiento</th>
@@ -64,8 +60,6 @@ $resultado = mysqli_query($conexion, $consulta);
         echo "
           <tr>
             <td>{$fila['nombre']}</td>
-            <td>{$fila['edad']}</td>
-            <td>{$fila['anio_nacimiento']}</td>
             <td>{$fila['hijos']}</td>
             <td>{$fila['correo']}</td>
             <td>{$fila['fecha_nacimiento']}</td>
