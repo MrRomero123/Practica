@@ -1,65 +1,77 @@
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
+$conexion = mysqli_connect(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "examen");
+
+// Verificar conexión
+if (!$conexion) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
+
+$consulta = "SELECT 
+    p.id_persona,
+    p.nombre,
+    p.edad,
+    p.correo,
+    p.fecha_nacimiento,
+    o.descripcion AS origen,
+    p.anio_nacimiento,
+    p.telefonos
+FROM Persona p
+JOIN Origen o ON p.id_origen = o.id_origen";
+
+$resultado = mysqli_query($conexion, $consulta);
+?>
 
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Customer Catalog</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <title>Catálogo de Personas</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 </head>
 <body>
-  <div class = "container">
-    <div class="jumbotron">
-      <h1 class="display-4">Customer Catalog</h1>
-      <p class="lead">Aplicacion para ver catalogo de Clientes</p>
-      <hr class="my-4">
-      <p>Aplicacion simple de Conexion PHP con MYSQL</p>
-    </div>
-    <table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Historial Crediticio</th>
-          <th>Direccion</th>
-          <th>Ciudad</th>
-          <th>Provincia</th>
-          <th>Pais</th>
-          <th>Codigo Postal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+<div class="container">
+  <div class="jumbotron mt-4">
+    <h1 class="display-4">Catálogo de Personas</h1>
+    <p class="lead">Ejemplo simple de PHP + MySQL para listar personas</p>
+    <hr class="my-4">
+  </div>
 
-    $conexion = mysqli_connect(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "UNS");
-
-
-        $conexion = mysqli_connect(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "UNS");
-
-        $cadenaSQL = "SELECT * FROM cliente
-WHERE LEFT(nombre, 1) NOT IN ('A', 'E', 'I', 'O', 'U')
-   AND provincia IS NOT NULL
-";
-        $resultado = mysqli_query($conexion, $cadenaSQL);
-
-        while ($fila = mysqli_fetch_object($resultado)) {
-         echo "<tr><td> " .$fila->nombre . 
-         "</td><td>" . $fila->historial_crediticio .
-         "</td><td>" . $fila->direccion .
-         "</td><td>" . $fila->ciudad .
-         "</td><td>" . $fila->provincia .
-         "</td><td>" . $fila->pais .
-         "</td><td>" . $fila->codigo_postal .
-         "</td></tr>";
-       }
-       ?>
-     </tbody>
-   </table>
- </div>
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Correo</th>
+        <th>Fecha Nacimiento</th>
+        <th>Año Nacimiento</th>
+        <th>Origen</th>
+        <th>Teléfonos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      if ($resultado && mysqli_num_rows($resultado) > 0) {
+          while ($fila = mysqli_fetch_assoc($resultado)) {
+              echo "<tr>
+                      <td>{$fila['id_persona']}</td>
+                      <td>{$fila['nombre']}</td>
+                      <td>{$fila['edad']}</td>
+                      <td>{$fila['correo']}</td>
+                      <td>{$fila['fecha_nacimiento']}</td>
+                      <td>{$fila['anio_nacimiento']}</td>
+                      <td>{$fila['origen']}</td>
+                      <td>{$fila['telefonos']}</td>
+                    </tr>";
+          }
+      } else {
+          echo "<tr><td colspan='8'>No se encontraron resultados.</td></tr>";
+      }
+      ?>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>
-
