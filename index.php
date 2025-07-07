@@ -39,7 +39,7 @@ $resultado = mysqli_query($conexion, $consulta);
 </head>
 <body>
   <div class="container mt-5">
-    <h1 class="display-4 text-center">DATOS PERSONALES LUIS EDUARDO ROMERO PEREZ</h1>
+    <h1 class="display-4 text-center">DATOS PERSONALES DE LUIS EDUARDO ROMERO PEREZ</h1>
     <hr>
 
     <?php
